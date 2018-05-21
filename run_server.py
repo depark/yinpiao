@@ -277,6 +277,7 @@ class ExecHandler(tornado.websocket.WebSocketHandler):
         ExecLog(host=self.asset_name_str, cmd=self.command, user=self.user.username,
                 remote_ip=self.remote_ip, result=self.runner.results).save()
         newline_pattern = re.compile(r'\n')
+        print self.runner.results.items()
         for k, v in self.runner.results.items():
             for host, output in v.items():
                 output = newline_pattern.sub('<br />', output)
